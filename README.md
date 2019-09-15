@@ -1,44 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MeetApp Web
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+Pagina web para do MeetApp um app agregador de eventos, desafio do bootcamp goStack da RocketSeat
 
-### `npm start`
+## Desafio 09. Front-end do Meetapp
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Nesse desafio você irá construir o front-end com ReactJS do Meetapp que utilizará a API que você desenvolveu durante os desafios do segundo e terceiro módulo de Node.js.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Crie uma aplicação do zero utilizando create-react-app e configure as ferramentas de padrões de código, Reactotron, Redux e Redux Saga.
 
-### `npm test`
+Essa aplicação será utilizada por organizadores de meetups e não contará com funcionalidades de inscrição.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Essa aplicação faz parte do desafio final do bootcamp utilizado para finalização e certificação.
 
-### `npm run build`
+O layout do projeto está anexado nesse repositório.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Telas
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+#### Autenticação
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+O usuário deve poder se autenticar utilizando e-mail e senha.
 
-### `npm run eject`
+#### Cadastro
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+O usuário deve poder se cadastrar com nome, e-mail e senha.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Dashboard
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+O usuário deve poder listar os meetups que organiza e clicar para ver detalhes de um meetup.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Nessa tela o usuário pode navegar para a página de criação de meetup.
 
-## Learn More
+#### Detalhes
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+O usuário deve poder visualizar detalhes de um meetup previamente cadastrado.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Nessa tela o usuário pode editar os dados de um meetup ou até cancelar um meetup.
+
+#### Novo/editar
+
+O usuário deve poder cadastrar ou editar informações de meetups que organiza.
+
+Exiba a preview de imagem de banner do meetup quando o usuário selecionar uma imagem.
+
+Utilize validação nos campos.
+
+#### Perfil
+
+O usuário deve poder editar suas informações de cadastro.
+
+Utilize validação nos campos.
