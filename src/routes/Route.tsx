@@ -3,6 +3,9 @@ import { Route, Redirect, RouteProps } from 'react-router-dom';
 
 import { store } from '../store';
 
+import AuthLayout from '../pages/_layouts/auth';
+import DefaultLayout from '../pages/_layouts/default';
+
 interface Props extends RouteProps {
   isPrivate?: boolean;
 }
@@ -22,6 +25,17 @@ export default function RouterWrapper({
     return <Redirect to="/dashboard" />;
   }
 
+  const Layout = signed ? DefaultLayout : AuthLayout;
+
   const Component: any = component;
-  return <Route {...rest} render={props => <Component {...props} />} />;
+  return (
+    <Route
+      {...rest}
+      render={props => (
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      )}
+    />
+  );
 }

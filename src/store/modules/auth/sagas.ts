@@ -11,18 +11,13 @@ import { signInSuccess, signFailure } from './actions';
 export function* signIn({ payload }: Action) {
   try {
     const { email, password } = payload;
-
+    console.tron.log(payload);
     const response = yield call(api.post, 'sessions', {
       email,
       password,
     });
 
     const { token, user } = response.data;
-
-    if (!user.provider) {
-      toast.error('Usuario não é prestador');
-      return;
-    }
 
     yield put(signInSuccess(token, user));
 
