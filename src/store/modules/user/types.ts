@@ -2,7 +2,8 @@ export interface User {
   name: string;
   email: string;
   password?: string;
-  oldpassword?: string;
+  oldPassword?: string;
+  confirmPassword?: string;
 }
 
 export interface UserState {
