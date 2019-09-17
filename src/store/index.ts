@@ -7,6 +7,7 @@ import rootSaga from './modules/rootSaga';
 import persistReducers from './persistReducers';
 
 import { SignState } from './modules/auth/types';
+import { UserState } from './modules/user/types';
 
 import '../config/ReactotronConfig';
 
@@ -28,4 +29,5 @@ export { store, persistor };
 
 export interface ApplicationState {
   auth: SignState;
+  user: UserState;
 }

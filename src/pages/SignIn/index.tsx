@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import logo from '../../assets/logo.svg';
-import { ApplicationState } from '../../store';
-
-import { signInRequest } from '../../store/modules/auth/actions';
+import { signInRequest } from 'store/modules/auth/actions';
+import logo from 'assets/logo.svg';
+import { ApplicationState } from 'store';
 
 interface User {
   email: string;

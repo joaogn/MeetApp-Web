@@ -1,12 +1,15 @@
 import React from 'react';
 import { RouteProps } from 'react-router-dom';
 
-import { Wrapper, Content } from './styles';
+import Header from 'components/Header';
+
+import { Wrapper } from './styles';
 
 export default function auth({ children }: RouteProps) {
   return (
     <Wrapper>
-      <Content>{children}</Content>
+      <Header />
+      {children}
     </Wrapper>
   );
 }

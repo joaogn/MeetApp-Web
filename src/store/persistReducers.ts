@@ -7,7 +7,7 @@ export default (reducers: Reducer<any, AnyAction>) => {
     {
       key: 'meetapp',
       storage,
-      whitelist: ['auth'],
+      whitelist: ['auth', 'user'],
     },
     reducers
   );
