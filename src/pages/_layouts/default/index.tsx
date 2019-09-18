@@ -3,13 +3,13 @@ import { RouteProps } from 'react-router-dom';
 
 import Header from 'components/Header';
 
-import { Wrapper } from './styles';
+import { Wrapper, Scroll } from './styles';
 
 export default function auth({ children }: RouteProps) {
   return (
     <Wrapper>
       <Header />
-      {children}
+      <Scroll>{children}</Scroll>
     </Wrapper>
   );
 }

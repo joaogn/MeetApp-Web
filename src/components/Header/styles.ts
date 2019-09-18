@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 export const Content = styled.div`
   height: 64px;
-  max-width: 900px;
+  max-width: 940px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -52,7 +52,7 @@ export const Profile = styled.div`
     border: 0;
     border-radius: 4px;
     color: #fff;
-    margin: 0 30px 0;
+    margin-left: 30px;
     font-size: 18px;
     background-color: #f94d6a;
     &:hover {
