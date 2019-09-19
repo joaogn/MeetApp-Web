@@ -38,10 +38,12 @@ export default function SingIn() {
     <Container>
       <Header>
         <strong>Meus Meetups</strong>
-        <button type="button">
-          <MdAddCircleOutline />
-          Novo Meetup
-        </button>
+        <Link to="/editmeetup">
+          <button type="button">
+            <MdAddCircleOutline />
+            Novo Meetup
+          </button>
+        </Link>
       </Header>
       <MeetupsList>
         {meetups.map(meetup => (

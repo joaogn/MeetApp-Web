@@ -1,5 +1,11 @@
 # MeetApp Web
 
+## TODO
+
+Corrigir o bug do react-datepicker com react-perfect-scroll-bar,
+Mostrar pro usuario os erros retornados do Banco
+Criar os testes
+
 ## Overview
 
 Pagina web para do MeetApp um app agregador de eventos, desafio do bootcamp goStack da RocketSeat

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 import { parseISO, format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { toast } from 'react-toastify';
@@ -73,10 +73,12 @@ export default function Meetup({ match, history }: Props) {
       <Header>
         <strong>{meetup.title}</strong>
         <div>
-          <button className="edit" type="button">
-            <MdCreate />
-            Editar
-          </button>
+          <Link to={`/editmeetup/${meetupId}`}>
+            <button className="edit" type="button">
+              <MdCreate />
+              Editar
+            </button>
+          </Link>
 
           <button className="cancel" type="button" onClick={handleDelete}>
             <MdDeleteForever />
