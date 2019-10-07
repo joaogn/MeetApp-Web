@@ -7,13 +7,11 @@ import { Action } from './types';
 export function* updateProfile({ payload }: Action) {
   try {
     const { name, email, ...rest } = payload.data;
-    console.tron.log(rest);
     const profile = {
       name,
       email,
       ...(rest.oldPassword !== '' ? rest : {}),
     };
-    console.tron.log(profile);
     const response = yield call(api.put, 'users', profile);
 
     toast.success('Perfil atualizado com sucesso');

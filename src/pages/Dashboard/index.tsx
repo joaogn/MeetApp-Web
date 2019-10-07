@@ -5,7 +5,7 @@ import { parseISO, format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import api from 'services/api';
 
-import { Container, Header, MeetupsList, Meetup } from './styles';
+import { Container } from './styles';
 
 interface Meetup {
   id: number;
@@ -36,7 +36,7 @@ export default function SingIn() {
   }, []);
   return (
     <Container>
-      <Header>
+      <div className="header">
         <strong>Meus Meetups</strong>
         <Link to="/editmeetup">
           <button type="button">
@@ -44,17 +44,28 @@ export default function SingIn() {
             Novo Meetup
           </button>
         </Link>
-      </Header>
-      <MeetupsList>
-        {meetups.map(meetup => (
-          <Link to={`/meetup/${encodeURIComponent(meetup.id)}`}>
-            <Meetup>
-              <strong>{meetup.title}</strong>
-              <p>{meetup.formatedDate}</p>
-            </Meetup>
-          </Link>
-        ))}
-      </MeetupsList>
+      </div>
+      <ul>
+        {meetups.length === 0 ? (
+          <>
+            <strong>Não existe meetup cadastrado, crie um novo meetup</strong>
+          </>
+        ) : (
+          <>
+            {meetups.map(meetup => (
+              <Link
+                to={`/meetup/${encodeURIComponent(meetup.id)}`}
+                key={meetup.id}
+              >
+                <li>
+                  <strong>{meetup.title}</strong>
+                  <p>{meetup.formatedDate}</p>
+                </li>
+              </Link>
+            ))}
+          </>
+        )}
+      </ul>
     </Container>
   );
 }

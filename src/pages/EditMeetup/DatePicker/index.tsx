@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function DatePicker({ name, initialDate }: Props) {
-  const ref = useRef(null);
+  const ref: any = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
   const [selected, setSelected] = useState(defaultValue);
 

@@ -11,13 +11,14 @@ import { signInSuccess, signFailure } from './actions';
 export function* signIn({ payload }: Action) {
   try {
     const { email, password } = payload;
-    console.tron.log(payload);
     const response = yield call(api.post, 'sessions', {
       email,
       password,
     });
 
     const { token, user } = response.data;
+
+    api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
 

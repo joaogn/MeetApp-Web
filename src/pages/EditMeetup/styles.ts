@@ -3,11 +3,11 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   max-width: 940px;
-  margin: 50px auto;
+  margin: auto;
   form {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    padding-top: 60px;
   }
   textarea {
     background: rgba(0, 0, 0, 0.1);
@@ -74,5 +74,9 @@ export const Container = styled.div`
         margin-right: 10px;
       }
     }
+  }
+
+  @media only screen and (max-width: 940px) {
+    padding: 0 20px;
   }
 `;

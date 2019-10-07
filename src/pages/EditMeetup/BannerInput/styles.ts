@@ -10,7 +10,7 @@ export const Container = styled.div`
     }
     img {
       height: 300px;
-      width: 940px;
+      width: 100%;
       border-radius: 4px;
       color: #fff;
       background: rgba(0, 0, 0, 0.3);

@@ -11,7 +11,7 @@ import {
 } from 'react-icons/md';
 import api from 'services/api';
 
-import { Container, Header, Banner, Description, Details } from './styles';
+import { Container } from './styles';
 
 interface Meetup {
   title: string;
@@ -19,6 +19,7 @@ interface Meetup {
   location: string;
   date: string;
   formatedDate?: string;
+  past: boolean;
   file: {
     url: string;
   };
@@ -33,6 +34,7 @@ export default function Meetup({ match, history }: Props) {
     description: '',
     location: '',
     date: '',
+    past: false,
     file: { url: '' },
   });
   useEffect(() => {
@@ -43,6 +45,7 @@ export default function Meetup({ match, history }: Props) {
         description,
         location,
         date,
+        past,
         file,
       }: Meetup = response.data;
       const data = {
@@ -50,6 +53,7 @@ export default function Meetup({ match, history }: Props) {
         description,
         location,
         date,
+        past,
         file,
         formatedDate: format(parseISO(date), "dd 'de' MMMM', às' HH'h' ", {
           locale: pt,
@@ -70,32 +74,36 @@ export default function Meetup({ match, history }: Props) {
   }
   return (
     <Container>
-      <Header>
+      <div className="header">
         <strong>{meetup.title}</strong>
         <div>
-          <Link to={`/editmeetup/${meetupId}`}>
-            <button className="edit" type="button">
-              <MdCreate />
-              Editar
-            </button>
-          </Link>
+          {meetup.past ? null : (
+            <>
+              <Link to={`/editmeetup/${meetupId}`}>
+                <button className="edit" type="button">
+                  <MdCreate />
+                  Editar
+                </button>
+              </Link>
 
-          <button className="cancel" type="button" onClick={handleDelete}>
-            <MdDeleteForever />
-            Cancelar
-          </button>
+              <button className="cancel" type="button" onClick={handleDelete}>
+                <MdDeleteForever />
+                Cancelar
+              </button>
+            </>
+          )}
         </div>
-      </Header>
+      </div>
 
-      <Banner>
+      <div className="banner">
         <img src={meetup.file.url} alt="Banner" />
-      </Banner>
+      </div>
 
-      <Description>
+      <div className="description">
         <p>{meetup.description}</p>
-      </Description>
+      </div>
 
-      <Details>
+      <div className="details">
         <div className="date">
           <MdInsertInvitation />
           <p>{meetup.formatedDate}</p>
@@ -104,7 +112,7 @@ export default function Meetup({ match, history }: Props) {
           <MdRoom />
           <p>{meetup.location}</p>
         </div>
-      </Details>
+      </div>
     </Container>
   );
 }

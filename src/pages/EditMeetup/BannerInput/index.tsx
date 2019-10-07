@@ -15,7 +15,7 @@ export default function BannerInput({ name, imageUrl }: Props) {
   const { defaultValue, registerField, error } = useField(name);
   const [file, setFile] = useState(defaultValue && defaultValue.id);
   const [preview, setPreview] = useState(defaultValue && defaultValue.url);
-  const ref = useRef(null);
+  const ref: any = useRef(null);
 
   useEffect(() => {
     if (imageUrl) {

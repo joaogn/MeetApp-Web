@@ -59,4 +59,17 @@ export const Profile = styled.div`
       background: ${darken(0.03, '#F94D6A')};
     }
   }
+
+  @media only screen and (max-width: 450px) {
+    div {
+      strong {
+        font-size: 14px;
+        line-height: 14px;
+      }
+      a {
+        font-size: 12px;
+        line-height: 14px;
+      }
+    }
+  }
 `;

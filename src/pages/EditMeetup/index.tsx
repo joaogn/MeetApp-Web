@@ -39,11 +39,11 @@ export default function EditMeetup({ match, history }: Props) {
   function createSchema() {
     if (Number(meetupId) > 0) {
       return Yup.object().shape({
-        title: Yup.string(),
-        description: Yup.string(),
-        date: Yup.string(),
+        title: Yup.string().required('O Titulo é obrigatório'),
+        description: Yup.string().required('A Descrição é obrigatória'),
+        date: Yup.string().required('A Data é obrigatória'),
         banner_id: Yup.number(),
-        location: Yup.string(),
+        location: Yup.string().required('A Localização é obrigatória'),
       });
     }
     return Yup.object().shape({
@@ -63,19 +63,16 @@ export default function EditMeetup({ match, history }: Props) {
       setMeetup(response.data);
       setDescription(response.data.description);
     }
-    if (meetupId) {
+    if (meetupId !== undefined) {
       getMeetup();
     }
   }, [meetupId]);
 
   async function handleSubmit(data: any) {
-    console.tron.log(data.date);
-    console.tron.log();
     const newData = {
       ...data,
       date: format(new Date(data.date), "yyyy-MM-dd'T'HH:mm:ssxxx"),
     };
-    console.tron.log(newData);
     if (Number(meetupId) > 0) {
       try {
         await api.put(`/meetups/${meetupId}/update`, newData);

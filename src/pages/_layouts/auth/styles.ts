@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 export const Wrapper = styled.div`
-  height: 100%;
+  min-height: 100%;
   background: linear-gradient(180deg, #22202c 0%, #402845 100%);
   display: flex;
   justify-content: center;
@@ -14,6 +14,8 @@ export const Content = styled.div`
   width: 100%;
   max-width: 315px;
   text-align: center;
+  margin: auto;
+  min-height: 100%;
   form {
     display: flex;
     flex-direction: column;
