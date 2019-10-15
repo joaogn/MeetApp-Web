@@ -23,8 +23,9 @@ export default function Profile() {
   const dispach = useDispatch();
   const profile = useSelector((state: ApplicationState) => state.user.profile);
 
-  function handleSubmit(data: any) {
+  function handleSubmit(data: any, { resetForm }: any) {
     dispach(updateProfileRequest(data));
+    resetForm({ name: profile.name, email: profile.email });
   }
 
   return (

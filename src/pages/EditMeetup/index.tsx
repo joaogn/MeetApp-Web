@@ -25,9 +25,16 @@ interface Meetup {
 
 type Props = RouteComponentProps<any>;
 
+const schema = Yup.object().shape({
+  title: Yup.string().required('O Titulo é obrigatório'),
+  description: Yup.string().required('A Descrição é obrigatória'),
+  date: Yup.string().required('A Data é obrigatória'),
+  banner_id: Yup.number(),
+  location: Yup.string().required('A Localização é obrigatória'),
+});
+
 export default function EditMeetup({ match, history }: Props) {
   const meetupId = decodeURIComponent(match.params.meetupId);
-  const [description, setDescription] = useState('');
   const [meetup, setMeetup] = useState<Meetup>({
     title: '',
     description: '',
@@ -36,34 +43,12 @@ export default function EditMeetup({ match, history }: Props) {
     file: { url: '' },
   });
 
-  function createSchema() {
-    if (Number(meetupId) > 0) {
-      return Yup.object().shape({
-        title: Yup.string().required('O Titulo é obrigatório'),
-        description: Yup.string().required('A Descrição é obrigatória'),
-        date: Yup.string().required('A Data é obrigatória'),
-        banner_id: Yup.number(),
-        location: Yup.string().required('A Localização é obrigatória'),
-      });
-    }
-    return Yup.object().shape({
-      title: Yup.string().required('O Titulo é obrigatório'),
-      description: Yup.string().required('A Descrição é obrigatória'),
-      date: Yup.string()
-        .required('A Data é obrigatória')
-        .nullable(),
-      banner_id: Yup.number().required('A Imagem é obrigatória'),
-      location: Yup.string().required('A Localização é obrigatória'),
-    });
-  }
-
   useEffect(() => {
     async function getMeetup() {
       const response = await api.get(`/meetups/${meetupId}`);
       setMeetup(response.data);
-      setDescription(response.data.description);
     }
-    if (meetupId !== undefined) {
+    if (Number(meetupId) > 0) {
       getMeetup();
     }
   }, [meetupId]);
@@ -95,20 +80,10 @@ export default function EditMeetup({ match, history }: Props) {
 
   return (
     <Container>
-      <Form
-        schema={createSchema()}
-        initialData={meetup}
-        onSubmit={handleSubmit}
-      >
+      <Form schema={schema} initialData={meetup} onSubmit={handleSubmit}>
         <BannerInput name="banner_id" imageUrl={meetup.file.url} />
         <Input name="title" placeholder="Titulo do Meetup" />
-        <Input
-          name="description"
-          multiline
-          placeholder="Descrição completa"
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-        />
+        <Input name="description" multiline placeholder="Descrição completa" />
 
         <DatePicker name="date" initialDate={meetup.date} />
 
