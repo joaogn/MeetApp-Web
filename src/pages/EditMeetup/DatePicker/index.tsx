@@ -36,6 +36,7 @@ export default function DatePicker({ name, initialDate }: Props) {
   return (
     <>
       <Date
+        data-testid="date-input"
         name={fieldName}
         selected={selected}
         showTimeSelect

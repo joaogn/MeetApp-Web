@@ -12,10 +12,10 @@ export default function Header() {
   const { profile } = useSelector((state: ApplicationState) => state.user);
   return (
     <Container>
-      <Content>
+      <Content data-testid="header-content">
         <nav>
-          <Link to="/dashboard">
-            <img src={logo} alt="GoBarber" />
+          <Link to="/dashboard" data-testid="logo-button">
+            <img src={logo} alt="MeetApp" />
           </Link>
         </nav>
 
@@ -25,7 +25,11 @@ export default function Header() {
               <strong>{profile.name}</strong>
               <Link to="/profile">Meu perfil</Link>
             </div>
-            <button type="button" onClick={() => dispatch(signOut())}>
+            <button
+              data-testid="exit-button"
+              type="button"
+              onClick={() => dispatch(signOut())}
+            >
               Sair
             </button>
           </Profile>

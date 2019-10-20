@@ -4,11 +4,11 @@ import { toast } from 'react-toastify';
 import history from '../../../services/history';
 import api from '../../../services/api';
 
-import { Action } from './types';
+import { SignInSagaAction, SignUpSagaAction, PersistSagaAction } from './types';
 
 import { signInSuccess, signFailure } from './actions';
 
-export function* signIn({ payload }: Action) {
+export function* signIn({ payload }: SignInSagaAction) {
   try {
     const { email, password } = payload;
     const response = yield call(api.post, 'sessions', {
@@ -29,10 +29,9 @@ export function* signIn({ payload }: Action) {
   }
 }
 
-export function* signUp({ payload }: Action) {
+export function* signUp({ payload }: SignUpSagaAction) {
   try {
     const { name, email, password } = payload;
-
     yield call(api.post, 'users', {
       name,
       email,
@@ -40,23 +39,25 @@ export function* signUp({ payload }: Action) {
       provider: true,
     });
 
-    history.push('/');
+    yield history.push('/');
   } catch (err) {
     toast.error('Falha no cadastro, verifique seus dados');
     yield put(signFailure());
   }
 }
 
-export function setToken({ payload }: Action) {
-  if (!payload) return;
-  const { token } = payload.auth;
-  if (token) {
-    api.defaults.headers.Authorization = `Bearer ${token}`;
+export function* setToken({ payload }: PersistSagaAction) {
+  if (!payload) {
+    return;
+  }
+  const { auth } = payload;
+  if (auth) {
+    yield (api.defaults.headers.Authorization = `Bearer ${auth.token}`);
   }
 }
 
-export function signOut() {
-  history.push('/');
+export function* signOut() {
+  yield history.push('/');
 }
 
 export default all([

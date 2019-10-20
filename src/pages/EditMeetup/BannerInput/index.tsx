@@ -1,20 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useField } from '@rocketseat/unform';
-
-import bg from 'assets/imagebg.png';
+import { MdCameraAlt } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 import api from 'services/api';
 import { Container } from './styles';
 
 interface Props {
   name: string;
-  imageUrl: string;
+  imageUrl?: string;
+  imageId?: number;
 }
 
-export default function BannerInput({ name, imageUrl }: Props) {
+export default function BannerInput({ name, imageUrl, imageId }: Props) {
   const { defaultValue, registerField, error } = useField(name);
-  const [file, setFile] = useState(defaultValue && defaultValue.id);
-  const [preview, setPreview] = useState(defaultValue && defaultValue.url);
+  const [file, setFile] = useState<number>(defaultValue && defaultValue.id);
+  const [preview, setPreview] = useState<string>(
+    defaultValue && defaultValue.url
+  );
   const ref: any = useRef(null);
 
   useEffect(() => {
@@ -22,6 +25,13 @@ export default function BannerInput({ name, imageUrl }: Props) {
       setPreview(imageUrl);
     }
   }, [imageUrl]);
+
+  useEffect(() => {
+    if (imageId) {
+      setFile(imageId);
+    }
+  }, [imageId]);
+
   useEffect(() => {
     registerField({
       name: 'banner_id',
@@ -35,19 +45,31 @@ export default function BannerInput({ name, imageUrl }: Props) {
 
     data.append('file', e.target.files[0]);
 
-    const response = await api.post('files', data);
+    try {
+      const response = await api.post('files', data);
 
-    const { id, url } = response.data;
+      const { id, url } = response.data;
 
-    setFile(id);
-    setPreview(url);
+      setFile(id);
+      setPreview(url);
+    } catch (err) {
+      toast.error('Error no upload da imagem tente novamente');
+    }
   }
 
   return (
     <Container>
       <label htmlFor="banner">
-        <img src={preview || bg} alt="" />
+        {preview ? (
+          <img src={preview} alt="" />
+        ) : (
+          <div>
+            <MdCameraAlt size={56} color="rgba(255,255,255,0.3)" />
+            <strong>Selecionar imagem</strong>
+          </div>
+        )}
         <input
+          data-testid="banner-input"
           placeholder="Selecionar Imagem"
           type="file"
           id="banner"

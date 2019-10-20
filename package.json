@@ -34,10 +34,38 @@
     "yup": "^0.27.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "coverage": "react-app-rewired test --coverage --watchAll=false && make-coverage-badge --output-path \"./badges/coverage-badge.svg\"",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ],
+    "moduleNameMapper": {
+      "^~/(.*)": "<rootDir>/src/$1"
+    },
+    "collectCoverageFrom": [
+      "!src/index.ts",
+      "!src/services/api.ts",
+      "!src/__tests__/**/*",
+      "!src/store/*",
+      "!src/store/modules/*",
+      "!src/*",
+      "!src/config/*",
+      "!src/routes/index.tsx"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "json-summary",
+      "text",
+      "lcov"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -55,8 +83,11 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.1.2",
+    "@testing-library/react": "^9.3.0",
     "@types/axios": "^0.14.0",
     "@types/date-fns": "^2.6.0",
+    "@types/faker": "^4.1.6",
     "@types/history": "^4.7.3",
     "@types/react-datepicker": "^2.9.2",
     "@types/react-icons": "^3.0.0",
@@ -70,15 +101,20 @@
     "@types/yup": "^0.26.23",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.2.0",
+    "axios-mock-adapter": "^1.17.0",
     "babel-plugin-root-import": "^6.4.1",
     "eslint": "^6.4.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.19.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "prettier": "^1.18.2"
+    "faker": "^4.1.0",
+    "make-coverage-badge": "^1.1.1",
+    "prettier": "^1.18.2",
+    "react-app-rewired": "^2.1.3"
   }
 }

@@ -2,9 +2,9 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import api from 'services/api';
 import { updateProfileSuccess, updateProfileFailure } from './actions';
-import { Action } from './types';
+import { SagaAction } from './types';
 
-export function* updateProfile({ payload }: Action) {
+export function* updateProfile({ payload }: SagaAction) {
   try {
     const { name, email, ...rest } = payload.data;
     const profile = {

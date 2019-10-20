@@ -1,16 +1,49 @@
+![Coverage](badges/coverage-badge.svg) ![Licence](badges/licence-badge.svg)
+
 # MeetApp Web
 
-## TODO
-
-Corrigir o bug do react-datepicker com react-perfect-scroll-bar,
-Mostrar pro usuario os erros retornados do Banco
-Criar os testes
+- [Overview](#overview)
+- [Tecnologias](#tecnologias)
+- [Utilização](#utilização)
+- [Desafio](#desafio)
+- [License](#license)
 
 ## Overview
 
 Pagina web para do MeetApp um app agregador de eventos, desafio do bootcamp goStack da RocketSeat
 
-## Desafio 09. Front-end do Meetapp
+## Tecnologias
+
+- ReactJs
+- Redux
+- Redux Saga
+- Typescript
+- Jest
+- Styled Components
+- Date-fns
+- Toastify
+- Reactotron
+- ESLint
+- Prettier
+- EditorConfig
+
+## Utilização
+
+- Pré-requitos
+
+  - MeetApp Api
+
+- Definir a url da Api em src/services/api.ts
+
+- Instalar as dependências: `yarn install`
+
+- Iniciando: `yarn start`
+
+- Testes automatizados: `yarn coverage`
+
+- Criar a build: `yarn build`
+
+## Desafio
 
 Nesse desafio você irá construir o front-end com ReactJS do Meetapp que utilizará a API que você desenvolveu durante os desafios do segundo e terceiro módulo de Node.js.
 
@@ -57,3 +90,7 @@ Utilize validação nos campos.
 O usuário deve poder editar suas informações de cadastro.
 
 Utilize validação nos campos.
+
+## License
+
+MIT © [João Graça Neto](https://github.com/joaogn)

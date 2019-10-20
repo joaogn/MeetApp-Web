@@ -10,11 +10,16 @@ export interface UserState {
   profile: User;
 }
 
-export interface Action {
+export interface ReducerAction {
+  type: string;
+  payload?: {
+    user: User;
+  };
+}
+
+export interface SagaAction {
   type: string;
   payload: {
-    profile: User;
-    user: User;
     data: User;
   };
 }
