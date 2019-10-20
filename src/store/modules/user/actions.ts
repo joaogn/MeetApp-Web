@@ -7,10 +7,10 @@ export function updateProfileRequest(data: User) {
   };
 }
 
-export function updateProfileSuccess(profile: User) {
+export function updateProfileSuccess(user: User) {
   return {
     type: '@user/UPDATE_PROFILE_SUCCESS',
-    payload: { profile },
+    payload: { user },
   };
 }
 

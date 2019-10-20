@@ -31,12 +31,24 @@ export default function SingIn() {
 
   return (
     <>
-      <img src={logo} alt="GoBarber" />
+      <img src={logo} alt="MeetApp" />
       <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="email" type="email" placeholder="Seu e-mail" />
-        <Input name="password" type="password" placeholder="Sua senha" />
+        <Input
+          data-testid="email-input"
+          name="email"
+          type="email"
+          placeholder="Seu e-mail"
+        />
+        <Input
+          data-testid="password-input"
+          name="password"
+          type="password"
+          placeholder="Sua senha"
+        />
 
-        <button type="submit">{loading ? 'Carregando...' : 'Entrar'}</button>
+        <button data-testid="signin-submit" type="submit">
+          {loading ? 'Carregando...' : 'Entrar'}
+        </button>
         <Link to="register">Criar conta gratuita</Link>
       </Form>
     </>

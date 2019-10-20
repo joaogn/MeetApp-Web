@@ -7,7 +7,7 @@ import { Wrapper } from './styles';
 
 export default function auth({ children }: RouteProps) {
   return (
-    <Wrapper>
+    <Wrapper data-testid="default-layout">
       <Header />
       {children}
     </Wrapper>

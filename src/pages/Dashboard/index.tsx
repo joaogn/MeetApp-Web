@@ -18,19 +18,23 @@ export default function SingIn() {
   const [meetups, setMeetups] = useState<Meetup[]>([]);
   useEffect(() => {
     async function loadMeetups() {
-      const response = await api.get('/meetups');
-      const data: Meetup[] = response.data.map((item: Meetup) => {
-        return {
-          id: item.id,
-          title: item.title,
-          formatedDate: format(
-            parseISO(item.date),
-            "dd 'de' MMMM', às' HH'h' ",
-            { locale: pt }
-          ),
-        };
-      });
-      setMeetups(data);
+      try {
+        const response = await api.get('/meetups');
+        const data: Meetup[] = response.data.map((item: Meetup) => {
+          return {
+            id: item.id,
+            title: item.title,
+            formatedDate: format(
+              parseISO(item.date),
+              "dd 'de' MMMM', às' HH'h' ",
+              { locale: pt }
+            ),
+          };
+        });
+        setMeetups(data);
+      } catch (err) {
+        setMeetups([]);
+      }
     }
     loadMeetups();
   }, []);
@@ -39,7 +43,7 @@ export default function SingIn() {
       <div className="header">
         <strong>Meus Meetups</strong>
         <Link to="/editmeetup">
-          <button type="button">
+          <button type="button" data-testid="new-meetup">
             <MdAddCircleOutline />
             Novo Meetup
           </button>

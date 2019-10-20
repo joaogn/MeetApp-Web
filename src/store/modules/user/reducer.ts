@@ -1,22 +1,28 @@
 import produce from 'immer';
-import { Action, UserState } from './types';
+import { ReducerAction, UserState } from './types';
 
-const INITIAL_STATE: UserState = {
+export const INITIAL_STATE: UserState = {
   profile: { name: '', email: '' },
 };
 
-export default function user(state = INITIAL_STATE, action: Action) {
+export default function user(state = INITIAL_STATE, action: ReducerAction) {
   return produce(state, draft => {
     switch (action.type) {
       case '@auth/SIGN_IN_SUCCESS': {
-        draft.profile = action.payload.user;
+        const { payload } = action;
+        if (payload) {
+          draft.profile = payload.user;
+        }
         break;
       }
       case '@user/UPDATE_PROFILE_SUCCESS': {
-        draft.profile = action.payload.profile;
+        const { payload } = action;
+        if (payload) {
+          draft.profile = payload.user;
+        }
         break;
       }
-      case '@auth/SIGN_OUT': {
+      case '@user/UPDATE_PROFILE_FAILURE': {
         draft = INITIAL_STATE;
         break;
       }

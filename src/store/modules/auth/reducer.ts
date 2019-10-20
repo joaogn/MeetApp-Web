@@ -1,14 +1,14 @@
 import produce from 'immer';
 
-import { SignState, Action } from './types';
+import { SignState, ReducerAction } from './types';
 
-const INITIAL_STATE: SignState = {
-  token: null,
+export const INITIAL_STATE: SignState = {
+  token: undefined,
   signed: false,
   loading: false,
 };
 
-export default function auth(state = INITIAL_STATE, action: Action) {
+export default function auth(state = INITIAL_STATE, action: ReducerAction) {
   return produce(state, draft => {
     switch (action.type) {
       case '@auth/SIGN_IN_REQUEST': {
@@ -17,7 +17,8 @@ export default function auth(state = INITIAL_STATE, action: Action) {
       }
 
       case '@auth/SIGN_IN_SUCCESS': {
-        draft.token = action.payload.token;
+        const { payload } = action;
+        draft.token = payload && payload.token;
         draft.signed = true;
         draft.loading = false;
         break;
@@ -27,7 +28,7 @@ export default function auth(state = INITIAL_STATE, action: Action) {
         break;
       }
       case '@auth/SIGN_OUT': {
-        draft.token = null;
+        draft.token = undefined;
         draft.signed = false;
         break;
       }

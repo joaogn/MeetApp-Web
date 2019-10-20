@@ -36,11 +36,26 @@ export default function SingIn() {
     <>
       <img src={logo} alt="GoBarber" />
       <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="name" type="text" placeholder="Nome completo" />
-        <Input name="email" type="email" placeholder="Seu e-mail" />
-        <Input name="password" type="password" placeholder="Sua senha" />
+        <Input
+          data-testid="name-input"
+          name="name"
+          type="text"
+          placeholder="Nome completo"
+        />
+        <Input
+          data-testid="email-input"
+          name="email"
+          type="email"
+          placeholder="Seu e-mail"
+        />
+        <Input
+          data-testid="password-input"
+          name="password"
+          type="password"
+          placeholder="Sua senha"
+        />
 
-        <button type="submit">
+        <button data-testid="signup-submit" type="submit">
           {loading ? 'Carregando...' : 'Criar Conta'}
         </button>
         <Link to="/">Já tenho login</Link>

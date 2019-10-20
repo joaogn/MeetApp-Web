@@ -4,18 +4,41 @@ export interface User {
 }
 
 export interface SignState {
-  token: string | null;
+  token: string | undefined;
   signed: boolean;
   loading: boolean;
 }
 
-export interface Action {
+export interface ReducerAction {
+  type: string;
+  payload?: {
+    token?: string | undefined;
+    user?: User;
+    email?: string;
+    password?: string;
+  };
+}
+
+export interface SignInSagaAction {
   type: string;
   payload: {
-    auth: SignState;
-    token: string | null;
-    name: string;
     email: string;
     password: string;
+  };
+}
+
+export interface SignUpSagaAction {
+  type: string;
+  payload: {
+    email: string;
+    password: string;
+    name: string;
+  };
+}
+
+export interface PersistSagaAction {
+  type: string;
+  payload?: {
+    auth?: SignState;
   };
 }

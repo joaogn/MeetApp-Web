@@ -80,13 +80,22 @@ export default function Meetup({ match, history }: Props) {
           {meetup.past ? null : (
             <>
               <Link to={`/editmeetup/${meetupId}`}>
-                <button className="edit" type="button">
+                <button
+                  className="edit"
+                  type="button"
+                  data-testid="edit-button"
+                >
                   <MdCreate />
                   Editar
                 </button>
               </Link>
 
-              <button className="cancel" type="button" onClick={handleDelete}>
+              <button
+                className="cancel"
+                type="button"
+                onClick={handleDelete}
+                data-testid="cancel-button"
+              >
                 <MdDeleteForever />
                 Cancelar
               </button>
@@ -96,7 +105,7 @@ export default function Meetup({ match, history }: Props) {
       </div>
 
       <div className="banner">
-        <img src={meetup.file.url} alt="Banner" />
+        <img src={meetup.file.url} alt="Banner" data-testid="meetup-banner" />
       </div>
 
       <div className="description">
